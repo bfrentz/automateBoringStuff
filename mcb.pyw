@@ -15,8 +15,9 @@ The program will save each piece of clipboard text under a keyword.
 
 Usage:
 py mcb.pyw save <keyword> - Saves the clipboard to keyword.
-py mcb.pyw <keyword> - Loads keyword to the clipboard
-py mcb.pyw list - loads all keywords to the clipboard
+py mcb.pyw <keyword> - Loads keyword to the clipboard.
+py mcb.pyw list - loads all keywords to the clipboard.
+py mcb.pyw delete <keyword> - Deletes a given keyword.
 """
 
 import sys
@@ -30,6 +31,12 @@ mcbShelf = shelve.open('mcb')
 # Save the clipboard content
 if len(sys.argv) == 3 and sys.argv[1].lower() == 'save':
 	mcbShelf[sys.argv[2]] = pyperclip.paste()
+
+# Delete the entry
+elif len(sys.argv) == 3 and sys.argv[1].lower() == "del":
+	#for entry in mcbShelf:
+		#print(mcbShelf)
+	del mcbShelf[sys.argv[2]]
 
 # List the keywords and load a specific keyword's content
 elif len(sys.argv) == 2:

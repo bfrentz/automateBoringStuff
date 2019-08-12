@@ -37,6 +37,8 @@ elif len(sys.argv) == 2:
 		pyperclip.copy(str(list(mcbShelf.keys())))
 	elif sys.argv[1] in mcbShelf:
 		pyperclip.copy(mcbShelf[sys.argv[1]])
+	else:
+		print("Keyword not found.")
 
 # close shelf
 mcbShelf.close()

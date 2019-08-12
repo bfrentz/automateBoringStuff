@@ -31,11 +31,11 @@ phoneRegex = re.compile(r'''(
 
 # My regular expression for emails, I think it'll accept anything
 emailRegex = re.compile(r'''(
-	(.*)			# username, takes anything between the space and @ symbol for the identifier
+	([a-zA-Z0-9._%+-]+)	# username, takes anything between the space and @ symbol for the identifier
 	@			# @ symbol
 	(.*)			# domain name
 	\.			# dot
-	(.*)			# top-level domain
+	([a-zA-Z]{2,4})		# top-level domain
 	)''', re.VERBOSE)
 
 # From book, which will accept almost every email address possible
@@ -47,7 +47,28 @@ emailRegexAl = re.compile(r'''(
 	)''', re.VERBOSE)
 
 
-# FIND IN CLIPBOARD TEXT
+# Find matches in the clipboard's current text
+# formats phone numbers as ***-***-**** x***** for number and extension
+# doesn't alter email format
+text = str(pyperclip.paste())
+matches = []
+for groups in phoneRegex.findall(text):
+	phoneNumber = '-'.join([groups[1], groups[3], groups[5]])
+	if groups[8] != '':
+		phoneNumber += ' x' + groups[8]
+	matches.append(phoneNumber)
+	#print(phoneNumber)
+for groups in emailRegex.findall(text):
+	matches.append(groups[0])	# Takes all groups together
+	#print(groups[0])
 
 
-# COPY RESULTS TO CLIPBOARD
+# Copy results to the clipboard
+# join the matches into one string to be returned first
+if len(matches) > 0:
+	pyperclip.copy('\n'.join(matches))
+	print('Copied to clipboard: ')
+	print('\n'.join(matches))
+else:
+	print('No matching email addresses or phone numbers were found.')
+

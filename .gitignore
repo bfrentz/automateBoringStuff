@@ -1,0 +1,17 @@
+# OS junk files
+*.DS_Store
+
+# Office temp files
+~$*
+
+# Image files
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.eps
+
+# Private files
+pw.py
+

@@ -42,6 +42,7 @@ elif len(sys.argv) == 3 and sys.argv[1].lower() == "del":
 elif len(sys.argv) == 2:
 	if sys.argv[1].lower() == 'list':
 		pyperclip.copy(str(list(mcbShelf.keys())))
+		print(str(list(mcbShelf.keys())))
 	elif sys.argv[1] in mcbShelf:
 		pyperclip.copy(mcbShelf[sys.argv[1]])
 	else:

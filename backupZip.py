@@ -18,3 +18,25 @@ def backupToZip(folder):
 		if not os.path.exists(zipFilename):
 			break
 		number += 1
+
+	# Create the zipfile
+	print('Creating %s...' % (zipFilename))
+	backupZip = zipfile.ZipFile(zipFilename, 'w')
+
+	# Walk through folder and compress the files
+	for folderName, subFolders, fileNames in os.walk(folder):
+		print('Adding files in %s...' % (folderName))
+		backupZip.write(folderName)		# Add current folder to the Zip
+
+		# Add files in this foder to the zip
+		for filename in fileNames:
+			newBase = os.path.basename(folder) + '_'
+			if filename.startswith(newBase) and filename.endswith('.zip'):
+				continue	# don't backup the other backups
+			backupZip.write(os.path.join(folderName, filename))
+
+	backupZip.close()
+	print('Done.')
+
+
+#backupToZip('../automateBoringStuff/')

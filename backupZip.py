@@ -4,7 +4,7 @@
 # Bryce Frentz
 # 9/18/19
 
-import zipfile, os
+import zipfile, os, sys
 
 # Backup the entire contents of "folder" into a zip file
 def backupToZip(folder):
@@ -39,4 +39,18 @@ def backupToZip(folder):
 	print('Done.')
 
 
-backupToZip('/Users/Bryce/Projects/automateBoringStuff')
+
+backupTarget = ''
+
+if len(sys.argv) > 2:
+	print("ERROR: Too many arguments.")
+	sys.exit()
+elif len(sys.argv) == 2:
+	backupTarget = sys.argv[1]
+	#print(backupTarget)
+
+if not os.path.exists(backupTarget):
+	backupTarget = os.getcwd()
+	
+#print(backupTarget)
+backupToZip(backupTarget)

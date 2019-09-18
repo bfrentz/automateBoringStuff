@@ -39,4 +39,4 @@ def backupToZip(folder):
 	print('Done.')
 
 
-#backupToZip('../automateBoringStuff/')
+backupToZip('/Users/Bryce/Desktop/Wedding')

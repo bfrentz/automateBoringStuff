@@ -15,3 +15,6 @@
 # Private files
 pw.py
 mcb
+
+# Zip backups
+*.zip

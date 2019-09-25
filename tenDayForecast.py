@@ -4,6 +4,15 @@
 # Bryce Frentz
 # 9/24/19
 
+
+
+
+#*****************
+# NOTE
+# This won't work until I can do json api stuff...
+
+
+
 import requests, bs4, re
 
 # Get the remainder of the day's hourly forecast
@@ -11,8 +20,12 @@ res = requests.get('https://www.wunderground.com/forecast/us/in/notre-dame/46556
 res.raise_for_status()
 weather = bs4.BeautifulSoup(res.text, features="lxml")
 
+# DEBUG
+p#rint(res.text[:2500000])
+
 # Get dates
-dates = weather.select('a div > div')
+dateRegex = re.compile(r'obs-date')
+dates = weather.find_all(dateRegex)
 
 # DEBUG
 print(len(dates))

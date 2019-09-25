@@ -11,6 +11,10 @@ res = requests.get('https://www.wunderground.com/hourly/us/in/notre-dame/46556')
 res.raise_for_status()
 weather = bs4.BeautifulSoup(res.text, features="lxml")
 
+# DEBUG
+#print(res.text)
+#print(weather.getText())
+
 # Get div span
 elems = weather.select('tr div > span')
 

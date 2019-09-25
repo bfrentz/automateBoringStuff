@@ -17,6 +17,8 @@ print(browser.content)
 
 # Retrieve top search result links
 soup = bs4.BeautifulSoup(browser.text, features="lxml")
+
+# DEBUG
 #print(soup.getText())
 
 

@@ -22,7 +22,7 @@ elems = weather.select('tr div > span')
 conditionRegex = re.compile(r'\n(.*)\n')
 
 time = []
-attribute = []
+conditions = []
 temp = []
 precip = []
 wind = []
@@ -35,7 +35,7 @@ for item in range(len(elems)):
 	elif item % 10 == 1:
 		#print(str(item) + "\t" + elems[item].getText())
 		cond = conditionRegex.search(elems[item].getText())
-		attribute.append(cond.group(1))
+		conditions.append(cond.group(1))
 	elif item % 10 == 2:
 		#print(str(item) + "\t" + elems[item].getText())
 		temp.append(elems[item].getText())
@@ -46,12 +46,12 @@ for item in range(len(elems)):
 		#print(str(item) + "\t" + elems[item].getText())
 		wind.append(elems[item].getText())
 
-for attributes in range(len(attribute)):
-	print(repr(attribute[attributes]))
+#for attributes in range(len(attribute)):
+#	print(repr(attribute[attributes]))
 
 # Print out the data in nice tabular format
-print('Time\t\tConditions\t\tTemperature\t\tPrecipitation\t\tWind')
+print('Time'.ljust(10, ' ') + '\tConditions'.ljust(17, ' ') + '\tTemperature'.ljust(10, ' ') + '\tPrecipitation'.ljust(12, ' ') + '\tWind'.ljust(15, ' '))
 for item in range(len(time)):
-	print(time[item] + "\t" + attribute[item] + "\t\t" + temp[item] + "\t\t\t" + precip[item] + "\t\t\t" + wind[item])
+	print(time[item].ljust(10, ' ') + "\t" + conditions[item].ljust(17, ' ') + "\t" + temp[item].ljust(10, ' ') + "\t" + precip[item].ljust(12, ' ') + "\t" + wind[item].ljust(15, ' '))
 
 

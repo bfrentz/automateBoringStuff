@@ -24,6 +24,7 @@ soup = bs4.BeautifulSoup(browser.text, features="lxml")
 
 # Open a browswer tab for each result
 linkElems = soup.select('div.r a')
+#linkElems = soup.select('div div div div div div div div div a') # works, but gets sublinks too. I want to not have those
 
 # DEBUG
 print(len(linkElems))

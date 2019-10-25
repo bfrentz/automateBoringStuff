@@ -16,10 +16,11 @@ weather = bs4.BeautifulSoup(res.text, features="lxml")
 #print(weather.getText())
 
 # Get div span
-elems = weather.select('tr div > span')
+#elems = weather.select('tr div > span')
+elems = weather.select('div ')
 
 # DEBUG
-#print(len(elems))
+print(len(elems))
 #for item in range(len(elems)):
 #	print(str(item) + "\t" + elems[item].getText())
 

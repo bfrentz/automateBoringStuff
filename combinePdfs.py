@@ -13,6 +13,7 @@ import PyPDF2, os
 pdfFiles = []
 for filename in os.listdir('../ABS_OnlineMaterials/'):
 	if filename.endswith('.pdf'):
+		print("DEBUG: Gathering file " + filename)
 		pdfFiles.append(filename)
 
 pdfFiles.sort(key = str.lower)

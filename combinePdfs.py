@@ -11,23 +11,28 @@ import PyPDF2, os
 
 # Get all of the PDF filenames.
 pdfFiles = []
-for filename in os.listdir('../ABS_OnlineMaterials/'):
+filePath = '../ABS_OnlineMaterials/'
+for filename in os.listdir(filePath):
 	if filename.endswith('.pdf'):
-		print("DEBUG: Gathering file " + filename)
-		pdfFiles.append(filename)
+		# DEBUG
+		#print("DEBUG: Gathering file " + filename)
+		pdfFiles.append(filePath + filename)
 
 pdfFiles.sort(key = str.lower)
-
 pdfWriter = PyPDF2.PdfFileWriter()
+print()
 
 # Loop through the pdf files, opening the files and adding all of the pages together
 for filename in pdfFiles:
 	pdfFileObj = open(filename, 'rb')
 	pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+	# DEBUG
+	#print("DEBUG: Adding pages from file: " + filePath + filename)
+	
 	# Loop over pages and add them
 	# Avoid first page by starting at index 1
 	for pageNum in range(1, pdfReader.numPages):
-		PageObj = pdfReader.getPage(pageNum)
+		pageObj = pdfReader.getPage(pageNum)
 		pdfWriter.addPage(pageObj)
 
 

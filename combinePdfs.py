@@ -11,8 +11,8 @@ import PyPDF2, os
 
 # Get all of the PDF filenames.
 pdfFiles = []
-for filename in os.listdir('.'):
-	if filename.endswidth('.pdf'):
+for filename in os.listdir('../ABS_OnlineMaterials/'):
+	if filename.endswith('.pdf'):
 		pdfFiles.append(filename)
 
 pdfFiles.sort(key = str.lower)
@@ -29,4 +29,8 @@ for filename in pdfFiles:
 		PageObj = pdfReader.getPage(pageNum)
 		pdfWriter.addPage(pageObj)
 
-		
+
+# Save results in output pdf file
+pdfOutput = open('../ABS_OnlineMaterials/allminutes.pdf', 'wb')
+pdfWriter.write(pdfOutput)
+pdfOutput.close()
